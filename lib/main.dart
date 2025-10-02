@@ -1,5 +1,6 @@
 import 'payment_method.dart';
 import 'pos.dart';
+import 'cash_payment.dart';
 
 class MockPayment implements PaymentMethod {
   final List<String> log = [];
@@ -17,4 +18,10 @@ void main() {
   pos.checkout(100);
   pos.refund(50);
   print('Mock log: ${mock.log}');
+
+  print('\n--- POS with CashPayment ---');
+  var cash = CashPayment();
+  var posCash = POS(cash);
+  posCash.checkout(500.0);
+  posCash.refund(200.0);
 }
