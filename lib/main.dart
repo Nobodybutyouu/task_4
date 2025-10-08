@@ -2,6 +2,7 @@ import 'payment_method.dart';
 import 'pos.dart';
 import 'cash_payment.dart';
 import 'card_payment.dart';
+import 'mobile_wallet_payment.dart';
 
 class MockPayment implements PaymentMethod {
   final List<String> log = [];
@@ -32,5 +33,12 @@ void main() {
   var posCard = POS(card);
   posCard.checkout(1200.0);
   posCard.refund(300.0);
+
+  print('\n--- POS with MobileWalletPayment ---');
+  var wallet = MobileWalletPayment('WALLET-001');
+  var posWallet = POS(wallet);
+  posWallet.checkout(750.0);
+  posWallet.refund(100.0);
+
 
 }
